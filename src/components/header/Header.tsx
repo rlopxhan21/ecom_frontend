@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { CartDrawer } from "./CartDrawer";
 import { RootState } from "../../store/redux";
 import { AccountDrawer } from "./AccountDrawer";
+import { WishlistDrawer } from "./WishlistDrawer";
 import { systemActions } from "../../store/systemSlice";
 
 import Box from "@mui/material/Box";
@@ -19,7 +20,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
-import { WishlistDrawer } from "./WishlistDrawer";
 
 export const Header = () => {
   const dispatch = useDispatch();
@@ -59,7 +59,7 @@ export const Header = () => {
                 dispatch(systemActions.updateWishlistDrawerState(true))
               }
             >
-              <Badge badgeContent={0} max={9} color="error" overlap="circular">
+              <Badge badgeContent={10} max={9} color="error" overlap="circular">
                 <FavoriteIcon fontSize="large" />
               </Badge>
             </IconButton>

@@ -23,6 +23,7 @@ export const useAxiosInterceptor = () => {
   const axiosInstance = axios.create({
     headers: {
       Authorization: `Bearer ${token?.access}`,
+      "Content-Type": "application/json",
     },
   });
 

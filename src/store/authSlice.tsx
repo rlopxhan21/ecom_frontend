@@ -11,6 +11,7 @@ interface InitialDataType {
         is_superuser: string;
       }
     | undefined;
+  unactivatedAccountEmail: string | undefined;
 }
 
 const initialState: InitialDataType = {
@@ -18,6 +19,7 @@ const initialState: InitialDataType = {
     ? JSON.parse(localStorage.getItem("ecom_token")!)
     : undefined,
   profileData: undefined,
+  unactivatedAccountEmail: undefined,
 };
 
 export const authSlice = createSlice({
@@ -36,6 +38,10 @@ export const authSlice = createSlice({
 
     updateProfileData(state, action) {
       state.profileData = action.payload;
+    },
+
+    updateUnactivatedAccountEmail(state, action) {
+      state.unactivatedAccountEmail = action.payload;
     },
   },
 });

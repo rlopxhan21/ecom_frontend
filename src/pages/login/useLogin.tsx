@@ -13,40 +13,37 @@ export const useLogin = () => {
   const [loginLoading, setLoginLoading] = React.useState(false);
   const [loginError, setLoginError] = React.useState(false);
 
-  const sendLoginRequest = React.useCallback(
-    async (loginFormData: LoginDataType) => {
-      setLoginError(false);
-      setLoginLoading(true);
-      try {
-        const response = await axios({
-          method: "POST",
-          url: process.env.REACT_APP_BASE_URL! + "/auth/token-create/",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          data: loginFormData,
-        });
+  const sendLoginRequest = async (loginFormData: LoginDataType) => {
+    setLoginError(false);
+    setLoginLoading(true);
+    try {
+      const response = await axios({
+        method: "POST",
+        url: process.env.REACT_APP_BASE_URL! + "/auth/token-create/",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: loginFormData,
+      });
 
-        dispatch(authActions.updateToken(response.data));
+      dispatch(authActions.updateToken(response.data));
 
-        const profileResponse = await axios({
-          method: "GET",
-          url: process.env.REACT_APP_BASE_URL! + "/auth/me/",
-          headers: {
-            Authorization: `Bearer ${response.data.access}`,
-          },
-        });
+      const profileResponse = await axios({
+        method: "GET",
+        url: process.env.REACT_APP_BASE_URL! + "/auth/me/",
+        headers: {
+          Authorization: `Bearer ${response.data.access}`,
+        },
+      });
 
-        dispatch(authActions.updateProfileData(profileResponse.data[0]));
-        navigate("/");
-      } catch (error) {
-        setLoginError(true);
-      }
+      dispatch(authActions.updateProfileData(profileResponse.data[0]));
+      navigate("/");
+    } catch (error) {
+      setLoginError(true);
+    }
 
-      setLoginLoading(false);
-    },
-    [dispatch, navigate]
-  );
+    setLoginLoading(false);
+  };
 
   return { loginLoading, loginError, sendLoginRequest };
 };

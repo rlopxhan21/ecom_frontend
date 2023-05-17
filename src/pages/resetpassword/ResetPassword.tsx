@@ -1,12 +1,11 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 
-import { schema } from "./LoginZod";
-import { useLogin } from "./useLogin";
+import { schema } from "./ResetPasswordZod";
 import { useTheme } from "../../theme/useTheme";
-import { LoginInputField } from "./LoginInputField";
+import { useResetPassword } from "./useResetPassword";
 import { MainLayout } from "../../components/layout/MainLayout";
 import { CustomInput } from "../../components/custominput/CustomInput";
 import { LoadingDots } from "../../components/loadingdots/LoadingDots";
@@ -15,34 +14,30 @@ import Stack from "@mui/material/Stack";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
-import Divider from "@mui/material/Divider";
 import { useMediaQuery } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import { EmailInputField } from "./EmailInputField";
 
-export const Login = () => {
+export const ResetPassword = () => {
   const navigate = useNavigate();
+
+  const { theme } = useTheme();
+  const smallScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  const { resetPasswordLoading, resetPasswordError, sendPasswordResetRequest } =
+    useResetPassword();
 
   const methods = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
       email: "",
-      password: "",
     },
   });
 
-  const { loginLoading, loginError, sendLoginRequest } = useLogin();
-
-  const { theme } = useTheme();
-  const smallScreen = useMediaQuery(theme.breakpoints.down("md"));
-
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <MainLayout>
-      {loginLoading ? (
-        <LoadingDots loading={loginLoading} message="Logging In" />
+      {resetPasswordLoading ? (
+        <LoadingDots loading={resetPasswordLoading} message="Logging In" />
       ) : (
         <Stack justifyContent="center" alignItems="center">
           <Paper
@@ -52,46 +47,41 @@ export const Login = () => {
             }}
           >
             <Typography variant="h4" textAlign="center">
-              Sign In
+              Reset Your Password
             </Typography>
             <Typography variant="body1" textAlign="center" sx={{ mb: 2 }}>
-              Please sign in to your account to enjoy member-only benefits.
+              Lost your password? Please enter your email address. You will
+              recieve a link to create a new password via email.
             </Typography>
             <FormProvider {...methods}>
               <Stack
                 gap={2}
                 component={"form"}
                 noValidate
-                onSubmit={methods.handleSubmit(sendLoginRequest)}
+                onSubmit={methods.handleSubmit(sendPasswordResetRequest)}
               >
-                {LoginInputField.map((item) => (
+                {EmailInputField.map((item) => (
                   <CustomInput key={item.id} {...item} />
                 ))}
-                <Typography variant="body1" textAlign="end">
-                  <Link to="/reset-password">Forget password?</Link>
-                </Typography>
-                {loginError && (
+                {resetPasswordError && (
                   <Alert severity="error">
                     Please double check your credential and try again.
                   </Alert>
                 )}
                 <Button variant="contained" type="submit" fullWidth>
-                  Sign In
+                  Reset Password
+                </Button>
+                <Button
+                  variant="outlined"
+                  type="submit"
+                  color="error"
+                  onClick={() => navigate("/login")}
+                  fullWidth
+                >
+                  Back to Login
                 </Button>
               </Stack>
             </FormProvider>
-            <Divider sx={{ my: 2 }}>or</Divider>
-            <Button
-              variant="outlined"
-              onClick={() => navigate("/account-activation")}
-              fullWidth
-            >
-              Activate Your Account
-            </Button>
-            <Divider sx={{ my: 2 }}>or</Divider>
-            <Typography variant="body1" textAlign="center">
-              Don't have an account? <Link to="/registration">Register</Link>
-            </Typography>
           </Paper>
         </Stack>
       )}
