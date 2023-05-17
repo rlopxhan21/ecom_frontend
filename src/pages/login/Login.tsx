@@ -72,7 +72,7 @@ export const Login = () => {
                 </Typography>
                 {loginError && (
                   <Alert severity="error">
-                    Please double check your credential and try again.
+                    Please double check your credentials and try again.
                   </Alert>
                 )}
                 <Button variant="contained" type="submit" fullWidth>

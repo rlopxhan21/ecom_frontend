@@ -14,7 +14,7 @@ import Typography from "@mui/material/Typography";
 
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
-export const CheckEmail = () => {
+export const CheckEmailForPasswordReset = () => {
   const { theme } = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -40,16 +40,15 @@ export const CheckEmail = () => {
             <MailOutlineIcon fontSize="large" />
           </Avatar>
           <Typography variant="h4" textAlign="center">
-            Verify your email
+            Check your email
           </Typography>
           <Typography variant="body1" textAlign="center">
-            We've sent an email to {unactivatedAccountEmail} to verify your
-            email address and activate your account. The link in the email will
-            expire in 24 hours.
+            We've sent an email to {unactivatedAccountEmail} to reset your
+            account password. The link in the email will expire in 24 hours.
           </Typography>
           <Typography variant="body1" textAlign="center">
-            <Link to="/account-activation">Click here</Link> if you did not
-            recieve an email or would like to send the activation link again.
+            <Link to="/reset-password">Click here</Link> if you did not recieve
+            an email or would like to recieve the password reset link again.
           </Typography>
         </Paper>
       </Stack>

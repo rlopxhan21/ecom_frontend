@@ -61,7 +61,7 @@ export const AccountConfirmation = () => {
               <Avatar
                 sx={{
                   m: "auto",
-                  bgcolor: "secondary.main",
+                  bgcolor: "success.main",
                   width: 56,
                   height: 56,
                 }}

@@ -10,11 +10,14 @@ import { useProfile } from "./hooks/useProfile";
 import { CheckEmail } from "./pages/checkemail/CheckEmail";
 import { TrackOrders } from "./pages/trackorders/TrackOrders";
 import { Registration } from "./pages/registration/Registration";
+import { ResetPassword } from "./pages/resetpassword/ResetPassword";
 import { AccountActivation } from "./pages/accountactivation/AccountActivation";
+import { AccountConfirmation } from "./pages/accountconfirmation/AccountConfirmation";
+import { ResetPasswordSuccess } from "./pages/resetpasswordsucess/ResetPasswordSuccess";
+import { ResetPasswordConfirmation } from "./pages/resetpasswordconfirmation/ResetPasswordConfirmation";
 
 import { ThemeProvider } from "@mui/material";
-import { ResetPassword } from "./pages/resetpassword/ResetPassword";
-import { AccountConfirmation } from "./pages/accountconfirmation/AccountConfirmation";
+import { CheckEmailForPasswordReset } from "./pages/checkemail/CheckEmailForPasswordReset";
 
 function App() {
   const { theme } = useTheme();
@@ -33,6 +36,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/track-orders" element={<TrackOrders />} />
 
+        {/* -------------------------- Authentication Routes
+        ------------------------- */}
         <Route
           path="/login"
           element={!token ? <Login /> : <Navigate to="/" />}
@@ -41,7 +46,6 @@ function App() {
           path="/registration"
           element={!token ? <Registration /> : <Navigate to="/" />}
         />
-
         <Route
           path="/account-activation"
           element={!token ? <AccountActivation /> : <Navigate to="/" />}
@@ -58,6 +62,22 @@ function App() {
           path="/reset-password"
           element={!token ? <ResetPassword /> : <Navigate to="/" />}
         />
+        <Route
+          path="/password-confirmation/:userID/:tokenID"
+          element={!token ? <ResetPasswordConfirmation /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/password-confirmation/:userID/:tokenID/result"
+          element={!token ? <ResetPasswordSuccess /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/check-email-for-password-reset"
+          element={
+            !token ? <CheckEmailForPasswordReset /> : <Navigate to="/" />
+          }
+        />
+        {/* -------------------------- Authentication Routes
+        ------------------------- */}
       </Routes>
     </ThemeProvider>
   );

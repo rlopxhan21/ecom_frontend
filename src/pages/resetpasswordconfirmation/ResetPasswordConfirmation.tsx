@@ -1,15 +1,18 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 
-import { schema } from "./ResetPasswordZod";
 import { useTheme } from "../../theme/useTheme";
-import { EmailInputField } from "./EmailInputField";
-import { useResetPassword } from "./useResetPassword";
+import {
+  ResetPasswordConfirmationDataType,
+  schema,
+} from "./ResetPasswordConfirmationZod";
 import { MainLayout } from "../../components/layout/MainLayout";
 import { CustomInput } from "../../components/custominput/CustomInput";
 import { LoadingDots } from "../../components/loadingdots/LoadingDots";
+import { useResetPasswordConfirmation } from "./useResetPasswordConfirmation";
+import { ResetPasswordConfirmationInputField } from "./ResetPasswordConfirmationInputField";
 
 import Stack from "@mui/material/Stack";
 import Paper from "@mui/material/Paper";
@@ -18,28 +21,44 @@ import Alert from "@mui/material/Alert";
 import { useMediaQuery } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
-export const ResetPassword = () => {
+export const ResetPasswordConfirmation = () => {
   const navigate = useNavigate();
+  const { userID, tokenID } = useParams();
+
+  const params = {
+    userID: userID!,
+    tokenID: tokenID!,
+  };
 
   const { theme } = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
-  const { resetPasswordLoading, resetPasswordError, sendPasswordResetRequest } =
-    useResetPassword();
+  const {
+    resetPasswordConfirmationLoading,
+    resetPasswordConfirmationError,
+    sendPasswordResetConfirmationRequest,
+  } = useResetPasswordConfirmation();
 
   const methods = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
-      email: "",
+      password: "",
+      password2: "",
     },
   });
 
+  const onResetPasswordConfirmationFormSubmitHandler = (
+    data: ResetPasswordConfirmationDataType
+  ) => {
+    sendPasswordResetConfirmationRequest(data, params);
+  };
+
   return (
     <MainLayout>
-      {resetPasswordLoading ? (
+      {resetPasswordConfirmationLoading ? (
         <LoadingDots
-          loading={resetPasswordLoading}
-          message="Sending Password Reset Link"
+          loading={resetPasswordConfirmationLoading}
+          message="Resetting Your Password"
         />
       ) : (
         <Stack justifyContent="center" alignItems="center">
@@ -61,14 +80,17 @@ export const ResetPassword = () => {
                 gap={2}
                 component={"form"}
                 noValidate
-                onSubmit={methods.handleSubmit(sendPasswordResetRequest)}
+                onSubmit={methods.handleSubmit(
+                  onResetPasswordConfirmationFormSubmitHandler
+                )}
               >
-                {EmailInputField.map((item) => (
+                {ResetPasswordConfirmationInputField.map((item) => (
                   <CustomInput key={item.id} {...item} />
                 ))}
-                {resetPasswordError && (
+                {resetPasswordConfirmationError && (
                   <Alert severity="error">
-                    Please double check your credential and try again.
+                    Something went wrong while completing your request. Please
+                    try again.
                   </Alert>
                 )}
                 <Button variant="contained" type="submit" fullWidth>
