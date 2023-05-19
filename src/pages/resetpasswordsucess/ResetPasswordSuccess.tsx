@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useTheme } from "../../theme/useTheme";
+import { theme } from "../../theme/Theme";
 import { MainLayout } from "../../components/layout/MainLayout";
 
 import Stack from "@mui/material/Stack";
@@ -16,7 +16,6 @@ import DoneIcon from "@mui/icons-material/Done";
 export const ResetPasswordSuccess = () => {
   const navigate = useNavigate();
 
-  const { theme } = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   return (

@@ -1,7 +1,8 @@
 import React from "react";
 
-import { useTheme } from "../../theme/useTheme";
+import { theme } from "../../theme/Theme";
 
+import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Stack from "@mui/material/Stack";
 import Rating from "@mui/material/Rating";
@@ -22,14 +23,13 @@ const btnStyles = {
   borderRadius: 0,
   bgcolor: "common.black",
   "&:hover": {
-    background: "#212529",
+    background: "#1e1e1e",
   },
 };
 
 export const ProductCard = () => {
   const [isCardHovered, setIsCardHovered] = React.useState(false);
 
-  const { theme } = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down("xs"));
 
   return (
@@ -45,16 +45,19 @@ export const ProductCard = () => {
       onMouseEnter={() => setIsCardHovered(true)}
       onMouseLeave={() => setIsCardHovered(false)}
     >
-      <CardMedia
-        component="img"
-        height="325"
-        image="https://m.media-amazon.com/images/I/61MxE93f37L._AC_SL1500_.jpg"
-        alt="{name}"
-        sx={{
-          transition: "transform 0.3s ease-in-out",
-          transform: isCardHovered ? "scale(1.05)" : "none",
-        }}
-      />
+      <Box sx={{ height: "325", overflow: "hidden" }}>
+        <CardMedia
+          component="img"
+          height="325"
+          image="https://m.media-amazon.com/images/I/61MxE93f37L._AC_SL1500_.jpg"
+          alt="{name}"
+          sx={{
+            transition: "transform 0.4s ease-in-out",
+            transform: `scale(${isCardHovered ? 1.07 : 1})`,
+          }}
+        />
+      </Box>
+
       <CardContent>
         <Stack
           direction="row"

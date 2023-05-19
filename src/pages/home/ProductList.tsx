@@ -41,7 +41,7 @@ export const ProductList = () => {
           variant="outlined"
           color="primary"
           size="large"
-          sx={{ m: "auto", fontWeight: 700, px: 10 }}
+          sx={{ m: "auto", fontWeight: 700, px: 10, mb: 4 }}
         >
           Load More Products
         </Button>

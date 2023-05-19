@@ -34,7 +34,7 @@ export const WishlistDrawer = () => {
       sx={{
         "& .MuiDrawer-paper": {
           boxSizing: "border-box",
-          width: 240,
+          width: 325,
         },
       }}
     >

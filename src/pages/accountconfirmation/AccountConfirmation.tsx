@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { useTheme } from "../../theme/useTheme";
+import { theme } from "../../theme/Theme";
 import { MainLayout } from "../../components/layout/MainLayout";
 import { useAccountConfirmation } from "./useAccountConfirmation";
 import { LoadingDotsModal } from "../../components/loadingdots/LoadingDotsModal";
@@ -21,7 +21,6 @@ export const AccountConfirmation = () => {
 
   const { userID, tokenID } = useParams();
 
-  const { theme } = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const {

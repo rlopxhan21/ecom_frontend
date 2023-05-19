@@ -5,7 +5,7 @@ import { FormProvider, useForm } from "react-hook-form";
 
 import { schema } from "./LoginZod";
 import { useLogin } from "./useLogin";
-import { useTheme } from "../../theme/useTheme";
+import { theme } from "../../theme/Theme";
 import { LoginInputField } from "./LoginInputField";
 import { MainLayout } from "../../components/layout/MainLayout";
 import { CustomInput } from "../../components/custominput/CustomInput";
@@ -32,7 +32,6 @@ export const Login = () => {
 
   const { loginLoading, loginError, sendLoginRequest } = useLogin();
 
-  const { theme } = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   React.useEffect(() => {

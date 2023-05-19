@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 
-import { useTheme } from "../../theme/useTheme";
+import { theme } from "../../theme/Theme";
 import {
   ResetPasswordConfirmationDataType,
   schema,
@@ -30,7 +30,6 @@ export const ResetPasswordConfirmation = () => {
     tokenID: tokenID!,
   };
 
-  const { theme } = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const {

@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { useTheme } from "../../theme/useTheme";
+import { theme } from "../../theme/Theme";
 import { MainLayout } from "../../components/layout/MainLayout";
 
 import Stack from "@mui/material/Stack";
@@ -15,7 +15,6 @@ import Typography from "@mui/material/Typography";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
 export const CheckEmailForPasswordReset = () => {
-  const { theme } = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const { unactivatedAccountEmail } = useSelector(

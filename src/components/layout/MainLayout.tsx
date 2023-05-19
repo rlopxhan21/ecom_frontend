@@ -16,7 +16,6 @@ export const MainLayout: React.FC<Props> = ({ children }) => {
       <Box
         sx={{
           minHeight: "70vh",
-          py: 2,
           m: "auto",
         }}
       >

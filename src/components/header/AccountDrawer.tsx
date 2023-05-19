@@ -44,7 +44,7 @@ export const AccountDrawer = () => {
       sx={{
         "& .MuiDrawer-paper": {
           boxSizing: "border-box",
-          width: 300,
+          width: 325,
         },
       }}
     >

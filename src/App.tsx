@@ -2,9 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 
+import { theme } from "./theme/Theme";
 import { Home } from "./pages/home/Home";
 import { RootState } from "./store/redux";
-import { useTheme } from "./theme/useTheme";
 import { Login } from "./pages/login/Login";
 import { useProfile } from "./hooks/useProfile";
 import { Profile } from "./pages/profile/Profile";
@@ -23,8 +23,6 @@ import { ResetPasswordConfirmation } from "./pages/resetpasswordconfirmation/Res
 import { ThemeProvider } from "@mui/material";
 
 function App() {
-  const { theme } = useTheme();
-
   const { token } = useSelector((state: RootState) => state.auth);
 
   const { sendProfileRequest } = useProfile();

@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 
+import { theme } from "../../theme/Theme";
 import { schema } from "./ResetPasswordZod";
-import { useTheme } from "../../theme/useTheme";
 import { EmailInputField } from "./EmailInputField";
 import { useResetPassword } from "./useResetPassword";
 import { MainLayout } from "../../components/layout/MainLayout";
@@ -21,7 +21,6 @@ import Typography from "@mui/material/Typography";
 export const ResetPassword = () => {
   const navigate = useNavigate();
 
-  const { theme } = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const { resetPasswordLoading, resetPasswordError, sendPasswordResetRequest } =

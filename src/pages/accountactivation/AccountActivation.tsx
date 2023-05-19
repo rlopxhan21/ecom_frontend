@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 
-import { useTheme } from "../../theme/useTheme";
+import { theme } from "../../theme/Theme";
 import { schema } from "./AccountActivationZod";
 import { useAccountActivation } from "./useAccountActivation";
 import { MainLayout } from "../../components/layout/MainLayout";
@@ -21,7 +21,6 @@ import Typography from "@mui/material/Typography";
 export const AccountActivation = () => {
   const navigate = useNavigate();
 
-  const { theme } = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const {

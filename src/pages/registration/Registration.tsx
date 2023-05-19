@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import { theme } from "../../theme/Theme";
 import { schema } from "./RegistrationZod";
 import { useRegistration } from "./useRegistration";
 import { MainLayout } from "../../components/layout/MainLayout";
@@ -16,7 +17,6 @@ import Alert from "@mui/material/Alert";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import { useMediaQuery } from "@mui/material";
-import { useTheme } from "../../theme/useTheme";
 import Typography from "@mui/material/Typography";
 
 export const Registration = () => {
@@ -24,7 +24,6 @@ export const Registration = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const { theme } = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const methods = useForm({
