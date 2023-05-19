@@ -9,7 +9,7 @@ import { EmailInputField } from "./EmailInputField";
 import { useResetPassword } from "./useResetPassword";
 import { MainLayout } from "../../components/layout/MainLayout";
 import { CustomInput } from "../../components/custominput/CustomInput";
-import { LoadingDots } from "../../components/loadingdots/LoadingDots";
+import { LoadingDotsModal } from "../../components/loadingdots/LoadingDotsModal";
 
 import Stack from "@mui/material/Stack";
 import Paper from "@mui/material/Paper";
@@ -37,7 +37,7 @@ export const ResetPassword = () => {
   return (
     <MainLayout>
       {resetPasswordLoading ? (
-        <LoadingDots
+        <LoadingDotsModal
           loading={resetPasswordLoading}
           message="Sending Password Reset Link"
         />

@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useTheme } from "../../theme/useTheme";
 import { MainLayout } from "../../components/layout/MainLayout";
 import { useAccountConfirmation } from "./useAccountConfirmation";
-import { LoadingDots } from "../../components/loadingdots/LoadingDots";
+import { LoadingDotsModal } from "../../components/loadingdots/LoadingDotsModal";
 
 import Stack from "@mui/material/Stack";
 import Paper from "@mui/material/Paper";
@@ -42,7 +42,7 @@ export const AccountConfirmation = () => {
   return (
     <MainLayout>
       {accountConfirmationLoading ? (
-        <LoadingDots
+        <LoadingDotsModal
           loading={accountConfirmationLoading}
           message="Activating Your Account"
         />

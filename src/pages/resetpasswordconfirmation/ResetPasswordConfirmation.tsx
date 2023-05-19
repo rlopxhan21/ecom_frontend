@@ -10,7 +10,7 @@ import {
 } from "./ResetPasswordConfirmationZod";
 import { MainLayout } from "../../components/layout/MainLayout";
 import { CustomInput } from "../../components/custominput/CustomInput";
-import { LoadingDots } from "../../components/loadingdots/LoadingDots";
+import { LoadingDotsModal } from "../../components/loadingdots/LoadingDotsModal";
 import { useResetPasswordConfirmation } from "./useResetPasswordConfirmation";
 import { ResetPasswordConfirmationInputField } from "./ResetPasswordConfirmationInputField";
 
@@ -56,7 +56,7 @@ export const ResetPasswordConfirmation = () => {
   return (
     <MainLayout>
       {resetPasswordConfirmationLoading ? (
-        <LoadingDots
+        <LoadingDotsModal
           loading={resetPasswordConfirmationLoading}
           message="Resetting Your Password"
         />

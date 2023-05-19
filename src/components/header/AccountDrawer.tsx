@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/redux";
 import { useLogout } from "../../hooks/useLogout";
 import { systemActions } from "../../store/systemSlice";
-import { LoadingDots } from "../loadingdots/LoadingDots";
+import { LoadingDotsModal } from "../loadingdots/LoadingDotsModal";
 
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
@@ -29,7 +29,7 @@ export const AccountDrawer = () => {
   const { logoutLoading, sendLogoutRequest } = useLogout();
 
   if (logoutLoading) {
-    return <LoadingDots loading={logoutLoading} message="Logging Out" />;
+    return <LoadingDotsModal loading={logoutLoading} message="Logging Out" />;
   }
 
   return (
@@ -44,7 +44,7 @@ export const AccountDrawer = () => {
       sx={{
         "& .MuiDrawer-paper": {
           boxSizing: "border-box",
-          width: 240,
+          width: 300,
         },
       }}
     >
@@ -73,17 +73,20 @@ export const AccountDrawer = () => {
           </ListItem>
           {token && (
             <>
-              <ListItem onClick={() => navigate("/orders")} disablePadding>
+              <ListItem onClick={() => navigate("/yourorders")} disablePadding>
                 <ListItemButton sx={{ textAlign: "center" }}>
                   <ListItemText primary={"Your orders"} />
                 </ListItemButton>
               </ListItem>
-              <ListItem onClick={() => navigate("/settings")} disablePadding>
+              <ListItem
+                onClick={() => navigate("/yourpayments")}
+                disablePadding
+              >
                 <ListItemButton sx={{ textAlign: "center" }}>
                   <ListItemText primary={"Your Payments"} />
                 </ListItemButton>
               </ListItem>
-              <ListItem onClick={() => navigate("/settings")} disablePadding>
+              <ListItem onClick={() => navigate("/profile")} disablePadding>
                 <ListItemButton sx={{ textAlign: "center" }}>
                   <ListItemText primary={"Manage Your Profile"} />
                 </ListItemButton>

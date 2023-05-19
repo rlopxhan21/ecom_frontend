@@ -2,10 +2,10 @@ import React from "react";
 
 import { MainLayout } from "../../components/layout/MainLayout";
 
-export const TrackOrders = () => {
+export const YourPayments = () => {
   return (
     <MainLayout>
-      <h1>Track Orders</h1>
+      <h1>YourPayments</h1>
     </MainLayout>
   );
 };

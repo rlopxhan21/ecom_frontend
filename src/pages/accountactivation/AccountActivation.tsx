@@ -9,7 +9,7 @@ import { useAccountActivation } from "./useAccountActivation";
 import { MainLayout } from "../../components/layout/MainLayout";
 import { EmailInputField } from "../resetpassword/EmailInputField";
 import { CustomInput } from "../../components/custominput/CustomInput";
-import { LoadingDots } from "../../components/loadingdots/LoadingDots";
+import { LoadingDotsModal } from "../../components/loadingdots/LoadingDotsModal";
 
 import Stack from "@mui/material/Stack";
 import Alert from "@mui/material/Alert";
@@ -40,7 +40,7 @@ export const AccountActivation = () => {
   return (
     <MainLayout>
       {accountActivationLoading ? (
-        <LoadingDots
+        <LoadingDotsModal
           loading={accountActivationLoading}
           message="Sending Activation Link"
         />

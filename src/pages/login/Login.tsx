@@ -9,7 +9,7 @@ import { useTheme } from "../../theme/useTheme";
 import { LoginInputField } from "./LoginInputField";
 import { MainLayout } from "../../components/layout/MainLayout";
 import { CustomInput } from "../../components/custominput/CustomInput";
-import { LoadingDots } from "../../components/loadingdots/LoadingDots";
+import { LoadingDotsModal } from "../../components/loadingdots/LoadingDotsModal";
 
 import Stack from "@mui/material/Stack";
 import Paper from "@mui/material/Paper";
@@ -42,7 +42,7 @@ export const Login = () => {
   return (
     <MainLayout>
       {loginLoading ? (
-        <LoadingDots loading={loginLoading} message="Logging In" />
+        <LoadingDotsModal loading={loginLoading} message="Logging In" />
       ) : (
         <Stack justifyContent="center" alignItems="center">
           <Paper

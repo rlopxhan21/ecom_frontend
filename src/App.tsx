@@ -7,17 +7,20 @@ import { RootState } from "./store/redux";
 import { useTheme } from "./theme/useTheme";
 import { Login } from "./pages/login/Login";
 import { useProfile } from "./hooks/useProfile";
+import { Profile } from "./pages/profile/Profile";
 import { CheckEmail } from "./pages/checkemail/CheckEmail";
+import { YourOrders } from "./pages/yourorders/YourOrders";
 import { TrackOrders } from "./pages/trackorders/TrackOrders";
 import { Registration } from "./pages/registration/Registration";
+import { YourPayments } from "./pages/yourpayments/YourPayments";
 import { ResetPassword } from "./pages/resetpassword/ResetPassword";
 import { AccountActivation } from "./pages/accountactivation/AccountActivation";
 import { AccountConfirmation } from "./pages/accountconfirmation/AccountConfirmation";
 import { ResetPasswordSuccess } from "./pages/resetpasswordsucess/ResetPasswordSuccess";
+import { CheckEmailForPasswordReset } from "./pages/checkemail/CheckEmailForPasswordReset";
 import { ResetPasswordConfirmation } from "./pages/resetpasswordconfirmation/ResetPasswordConfirmation";
 
 import { ThemeProvider } from "@mui/material";
-import { CheckEmailForPasswordReset } from "./pages/checkemail/CheckEmailForPasswordReset";
 
 function App() {
   const { theme } = useTheme();
@@ -78,6 +81,10 @@ function App() {
         />
         {/* -------------------------- Authentication Routes
         ------------------------- */}
+
+        <Route path="/yourorders" element={<YourOrders />} />
+        <Route path="/yourpayments" element={<YourPayments />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </ThemeProvider>
   );
